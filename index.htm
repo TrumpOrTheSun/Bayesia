@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--[if lte IE 6]><html class="preIE7 preIE8 preIE9"><![endif]-->
+<!--[if IE 7]><html class="preIE8 preIE9"><![endif]-->
+<!--[if IE 8]><html class="preIE9"><![endif]-->
+<!--[if gte IE 9]><!--><html lang="en"><!--<![endif]-->
+  <head>
+    <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bayesia for Among Us</title>
+  <meta name="author" content="DWH0730">
+  <meta name="description" content="Counter for Among Us">
+  <meta name="keywords" content="bayesia,among,us,among us,bayesian,bayes,counter,for">
+  <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <style type="text/css">
+	body {
+		user-select: none; /* supported by Chrome and Opera */
+	   -webkit-user-select: none; /* Safari */
+	   -khtml-user-select: none; /* Konqueror HTML */
+	   -moz-user-select: none; /* Firefox */
+	   -ms-user-select: none; /* Internet Explorer/Edge */
+	}
+  
+	.au-0 { background-color: #C51111; color: white; } /*red blue green pink orange yellow black white purple brown cyan lime*/
+    .au-1 { background-color: #132FD2; color: white; }
+    .au-2 { background-color: #127F2D; color: white; }
+    .au-3 { background-color: #ED54DA; color: white; }
+    .au-4 { background-color: #F17D0E; color: white; }
+    .au-5 { background-color: #F3F457; color: black; }
+    .au-6 { background-color: #3F484E; color: white; }
+    .au-7 { background-color: #D6E0F0; color: black; }
+    .au-8 { background-color: #6A2FB9; color: white; }
+    .au-9 { background-color: #72491E; color: white; }
+    .au-10 { background-color: #38FEDC; color: black; }
+    .au-11 { background-color: #51EF39; color: black; }
+	
+	.au-cbox {
+		height: 31vh;
+		min-height: 72px;
+		text-align: center;
+		font-size: 72px;
+	}
+	.au-button {
+		flex: 1;
+		text-align: center;
+		height:23vh;
+		padding: 0.2em;
+	}
+	.au-rbox {
+		flex: 1;
+		
+	}
+	.vam {
+		vertical-align: middle;
+	}
+	.maxh {
+		height: 100%;
+	}
+	
+	.au-bold {
+		font-weight: bold;
+	}
+	
+	.au-number /* .au-number:visited .au-number:focus .au-number:active .au-number:focus-within */{
+		text-decoration: none;
+		color: inherit;
+	}
+	
+	.au-number:hover {
+		text-decoration: none;
+		color: inherit;
+	}
+	
+	.endscreen {
+		display:none;
+	}
+  </style>
+  </head>
+  <body style="height:100vh;">
+	<div style="display:none;">
+		<div class="maxh d-flex flex-nowrap justify-content-around" id="baserbox">
+			<div class="max au-rbox d-flex flex-column flex-nowrap justify-content-start au-$COLOR" id="rbox-$COLOR">
+				<div class="au-cbox"><a href="javascript:void();" class="vam au-number" id="$COLOR-count" onclick="press($COLOR, 'number')">?</a></div>
+				<a onclick="press($COLOR, 'plus');" id="au-$COLOR-plus"> <div class="au-button au-plus">
+					<svg width="100%" height="100%" viewBox="0 0 16 16" class="bi bi-plus-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					  <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+					  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+					</svg>
+				</div></a>
+				<a onclick="press($COLOR, 'minus');" id="au-$COLOR-minus"> <div class="au-button au-minus">
+					<svg width="100%" height="100%" viewBox="0 0 16 16" class="bi bi-dash-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					  <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+					  <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+					</svg>
+				</div></a>
+				<a onclick="press($COLOR, 'cross');" id="au-$COLOR-cross"> <div class="au-button au-cross">
+					<svg width="100%" height="100%" viewBox="0 0 16 16" class="bi bi-x-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					  <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+					  <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+					</svg>
+				</div></a>
+			</div>
+		</div>
+	</div>
+	<main class="maxh">
+		<a class="endscreen au-number" href="https://trumporthesun.github.io/">
+		<div style="height:50%">
+			<svg width="100%" height="100%" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+			  <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z"/>
+			  <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+			</svg>
+		</div>
+		</a>
+		
+		<a class="endscreen au-number" href="javascript:void();" onclick="press(-1, 'restart');">
+		<div style="height:50%">
+			<svg width="100%" height="100%" viewBox="0 0 16 16" class="bi bi-arrow-repeat" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+			  <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+			  <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+			</svg>
+		</div>
+		</a>
+		<div class="maxh d-flex flex-nowrap justify-content-around" id="colorholder">
+			
+		</div>
+		
+	</main>
+	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<script>
+	var baserbox;
+	var basescore = 0;
+	var colors = "red blue green pink orange yellow black white purple brown cyan lime".split(" ");
+	var numcolors = 12//12;
+	var score;
+	var state;
+	var left;
+	$(document).ready(reset());
+	
+	
+	function reset() {
+		score = [];
+		state = [];
+		left = numcolors;
+		$('#baserbox').hide();
+		$('.endscreen').hide();
+		baserbox = $('#baserbox').html().replace(' id="baserbox"',"");
+		for (ci = 0; ci < numcolors; ci++){
+			$('#colorholder').append(baserbox.replaceAll("$COLOR",ci).replace())
+			score.push(basescore);
+			state.push(0);
+			$('#au-'+ci+'-minus').hide()
+		}
+		
+		
+	
+	}
+	function stop(){
+		$('colorholder').hide();
+		$('.endscreen').show();
+	}
+	
+	function press(color, action){
+		if (action === 'restart') {
+			reset();
+		}
+		if (action === 'number') {
+			$('#'+color+'-count').toggleClass("au-bold");
+		}
+		else if (action === 'cross') {
+				
+			$('#au-'+color+'-minus').show();
+			$('#rbox-'+color).remove();
+			state[color] = 2;
+			left--;
+			if (left < 1) stop();
+		}
+		else if (state[color] == 0){
+			if (action === 'plus') {
+				state[color] = 1;
+				score[color] = 0;
+				$('#au-'+color+'-minus').show();
+				$('#'+color+'-count').html(''+basescore);
+			}
+		}
+		else if (state[color] == 1){
+			if (action === 'plus'){
+				score[color]++;
+				$('#'+color+'-count').html(''+score[color]);
+				if (score[color] > 99) press(color, 'cross');
+				
+			} else if (action === 'minus'){
+				score[color]--;
+				$('#'+color+'-count').html(''+score[color]);
+				
+				if (score[color] < -99) press(color, 'cross');
+			}
+		}
+	}
+	</script>
+  </body>
+</html>
